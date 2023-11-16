@@ -4,133 +4,54 @@
     return Convert.ToInt32(Console.ReadLine());
 }
 
-void FillArray(int[] array, int minValue = -10, int maxValue = 10)
+void Task41()
 {
-    maxValue ++;
-    Random random = new Random();
-    for (int i = 0; i < array.Length; i++)
+    //Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0
+    // ввёл пользователь.
+    Console.WriteLine("Задача 41");
+
+    int countNumbers = Input("Введите количество чисел: ");
+    int countPositiveNumbers = 0;
+
+    while (countNumbers > 0)
     {
-        array[i] = random.Next(minValue, maxValue);
+        int number = Input("Введите число: ");
+        if (number > 0) countPositiveNumbers ++;
+        countNumbers --;
     }
+    Console.WriteLine($"Чисел больше нуля: {countPositiveNumbers}");
 }
 
-void FillDoubleArray(double[] array)
+void Task43()
 {
-    Random random = new Random();
-    for (int i = 0; i < array.Length; i++)
-    {
-        array[i] = random.NextDouble();
-    }
-}
+    //Напишите программу, которая найдёт точку пересечения двух прямых, 
+    //заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; 
+    //значения b1, k1, b2 и k2 задаются пользователем.
+    //b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
+    Console.WriteLine("Задача 43");
 
-void PrintArray(int[] array)
-{
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write($"{array[i]} ");
-    }
-    Console.WriteLine();
-}
-
-void PrintDoubleArray(double[] array)
-{
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write($"{array[i]} ");
-    }
-    Console.WriteLine();
-}
-
-void Task34()
-{
-    //Задайте массив заполненный случайными положительными трёхзначными числами. 
-    //Напишите программу, которая покажет количество чётных чисел в массиве.
-    Console.WriteLine("Задача 34");
-
-    int size = 10;
-    int[] numbers = new int[size];
-    FillArray(numbers, 100, 999);
-    PrintArray(numbers);
-    int count = 0;
+    int b1 = Input("Введите b1: ");
+    int k1 = Input("Введите k1: ");
+    int b2 = Input("Введите b2: ");
+    int k2 = Input("Введите k2: ");
     
-    for (int i = 0; i < numbers.Length; i++)
-    {
-        if (numbers[i] % 2 == 0)
-        count ++;
-    }
+    double x = (b2 - b1) / (k1 - k2);
+    double y = k1 * x + b1;
 
-Console.WriteLine($"Количество чётных чисел в массиве: {count}");
-}
-
-void Task36()
-{
-    //Задайте одномерный массив, заполненный случайными числами. Найдите сумму 
-    //элементов с нечётными индексами.
-    Console.WriteLine("Задача 36");
-
-    int size = 10;
-    int[] numbers = new int[size];
-    FillArray(numbers, 0, 100);
-    PrintArray(numbers);  
-    int sum = 0;
-
-    for (int i = 0; i < numbers.Length; i++)
-    {
-        if (i % 2 != 0)
-        {
-            sum += numbers[i];
-            i ++;
-        }
-    }
-    Console.WriteLine($"Сумма элементов с нечётными индексами равна {sum}");
-}
-
-void Task38()
-{
-    //Задайте массив вещественных чисел. Найдите разницу между максимальным 
-    //и минимальным элементами массива.
-    Console.WriteLine("Задача 38");
-
-    int size = 10;
-    double[] numbers = new double[size];
-    FillDoubleArray(numbers);
-    PrintDoubleArray(numbers);
-    double min = numbers[0];
-    double max = numbers[0];
-    double result = 0;
-
-    for (int i = 0; i < numbers.Length; i++)
-    {
-        if (numbers[i] > numbers[0])
-        {
-            max = numbers[i];
-            i ++;
-        }
-        if (numbers[i] < numbers[0])
-        {
-            min = numbers[i];
-            i ++;
-        }
-    }
-    result = max - min;
-   
-    Console.WriteLine($"Разница между максимальным {max} и минимальным {min} элементами массива равна {result}");         
+    Console.Write($"Точка пересечения двух прямых: ({x},{y})]");
 }
 
 Console.Clear();
-Console.WriteLine("34 - Задача 34\n36 - Задача 36\n38 - Задача 38");
+Console.WriteLine("41 - Задача 41\n43 - Задача 43");
 int TaskNumber = Input("Введите номер задачи: ");
 
-switch(TaskNumber)
+switch (TaskNumber)
 {
-    case 34:
-        Task34();
+    case 41:
+        Task41();
         break;
-    case 36:
-        Task36();
-        break;
-    case 38:
-        Task38();
+    case 43:
+        Task43();
         break;
     default:
         Console.WriteLine("Введен неверный номер задачи");
